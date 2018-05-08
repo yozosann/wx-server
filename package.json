@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "deploy": "pm2 deploy ecosystem.config.js production"
+    "deploy": "pm2 deploy ecosystem.config.js production",
+    "deploy-init": "pm2 deploy ecosystem.config.js production setup"
   },
   "author": "",
   "license": "ISC",
