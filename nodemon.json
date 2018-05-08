@@ -1,0 +1,16 @@
+{
+  "restartable": "rs",
+  "verbose": false,
+  "env": {
+      "PORT": "9998"
+  },
+  "execMap": {
+      "js": "node"
+  },
+  "ignore": [
+      ".git",
+      ".idea",
+      "node_modules"
+  ],
+  "ext": "js app"
+}
