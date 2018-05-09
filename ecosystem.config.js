@@ -22,7 +22,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'root',
-      host : '140.82.43.167',
+      host : '108.61.182.82',
       ref  : 'origin/master',
       repo : 'git@github.com:yozosann/wx-server.git',
       path : '/root/www/wx-server',
