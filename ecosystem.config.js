@@ -26,7 +26,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:yozosann/wx-server.git',
       path : '/root/www/wx-server',
-      'post-deploy' : 'yarn && pm2 reload ecosystem.config.js --env production',
+      'post-deploy' : 'pm2 stop wx-backstage && yarn && pm2 reload ecosystem.config.js --env production',
       env  : {
         NODE_ENV: 'production'
       }
