@@ -32,17 +32,33 @@ router.post('/saveImages', async function (ctx, next) {
 })
 
 router.post('/login', async function (ctx, next) {
-  let {cipher, userId} = ctx.request.body;
-  ctx.cookies.set('name', 'tobi');
+  let Administrators = ctx.modules.Administrators;
+  let {cipher, userId} = ctx.request.body, data = false;
+  // console.log(Administrators);
+  // let admini = await Administrators.create({
+  //   'userid': userId,
+  //   'cipher': cipher,
+  // });
 
-  let bytes = CryptoJS.AES.decrypt(cipher, 'yozo');
-  let plaintext = bytes.toString(CryptoJS.enc.Utf8);
+  let user = await Administrators.findAll({
+    'where' : {
+      'userid': userId,
+    }
+  });
 
-  console.log(plaintext);
+  if(user[0] && user[0].cipher) {
+    let plaintext1 = CryptoJS.AES.decrypt(cipher, 'yozo').toString(CryptoJS.enc.Utf8);
+    let plaintext2 = CryptoJS.AES.decrypt(user[0].cipher, 'yozo').toString(CryptoJS.enc.Utf8);
+
+    if(plaintext1 === plaintext2) {
+      ctx.cookies.set('isyozo', 'yes', {httpOnly: false, maxAge: 3 * 24 * 60 * 60 * 1000});
+      data = true;
+    }
+  }
 
   ctx.body = {
     code: 0,
-    data: null
+    data
   }
 })
 

@@ -12,6 +12,17 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
   }
 });
 
+const Administrators = sequelize.define('administrators', {
+  userid: {
+    type: Sequelize.STRING(50),
+    primaryKey: true
+  },
+  cipher: Sequelize.STRING(50),
+  session: Sequelize.STRING(500),
+}, {
+    timestamps: false
+  });
+
 const Images = sequelize.define('images', {
   id: {
     type: Sequelize.STRING(50),
@@ -24,7 +35,8 @@ const Images = sequelize.define('images', {
   });
 
 module.exports = {
-  Images
+  Images,
+  Administrators
 };
 
 // let now = Date.now();
